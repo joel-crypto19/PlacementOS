@@ -20,3 +20,14 @@ backend/uploads/resumes/*
 # OS generated files
 .DS_Store
 Thumbs.db
+
+# Environment files
+.env.*
+!.env.example
+
+# Test and debug output
+coverage/
+*.log
+
+# Local editor settings
+.vscode/

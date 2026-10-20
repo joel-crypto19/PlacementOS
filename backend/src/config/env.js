@@ -15,6 +15,8 @@ module.exports = {
   USAJOBS_API_KEY: process.env.USAJOBS_API_KEY || '',
   USAJOBS_EMAIL: process.env.USAJOBS_EMAIL || '',
   SYNC_INTERVAL_HOURS: parseInt(process.env.SYNC_INTERVAL_HOURS || '24', 10),
+  SYNC_CRON_SCHEDULE: process.env.SYNC_CRON_SCHEDULE || '0 */12 * * *',
+  ENABLE_BACKGROUND_CRON: process.env.ENABLE_BACKGROUND_CRON !== 'false',
   UPLOAD_PATH: process.env.UPLOAD_PATH || path.join(__dirname, '../../uploads/resumes'),
   MAX_FILE_SIZE: 5 * 1024 * 1024 // 5MB
 };
