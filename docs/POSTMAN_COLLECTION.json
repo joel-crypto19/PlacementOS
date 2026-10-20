@@ -1,0 +1,162 @@
+{
+  "info": {
+    "_postman_id": "placementos-api-v1",
+    "name": "PlacementOS API Collection",
+    "description": "Comprehensive REST API requests for PlacementOS — College Placement & Internship Platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000/api",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["health"]
+        }
+      }
+    },
+    {
+      "name": "Auth - Login Student (Alex)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var jsonData = pm.response.json();",
+              "if (jsonData.token) { pm.environment.set('token', jsonData.token); }"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"student.alex@college.edu\",\n  \"password\": \"Student@1234Password\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/auth/login",
+          "host": ["{{baseUrl}}"],
+          "path": ["auth", "login"]
+        }
+      }
+    },
+    {
+      "name": "Auth - Login Admin",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"admin@college.edu\",\n  \"password\": \"Admin@1234Password\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/auth/login",
+          "host": ["{{baseUrl}}"],
+          "path": ["auth", "login"]
+        }
+      }
+    },
+    {
+      "name": "Student - Get Profile",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": {
+          "raw": "{{baseUrl}}/students/profile",
+          "host": ["{{baseUrl}}"],
+          "path": ["students", "profile"]
+        }
+      }
+    },
+    {
+      "name": "Student - Dashboard Analytics",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": {
+          "raw": "{{baseUrl}}/students/dashboard",
+          "host": ["{{baseUrl}}"],
+          "path": ["students", "dashboard"]
+        }
+      }
+    },
+    {
+      "name": "Jobs - List Open Positions",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/jobs?status=open&page=1&limit=10",
+          "host": ["{{baseUrl}}"],
+          "path": ["jobs"],
+          "query": [
+            { "key": "status", "value": "open" },
+            { "key": "page", "value": "1" },
+            { "key": "limit", "value": "10" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Applications - Submit Job Application",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"jobId\": \"REPLACE_WITH_JOB_ID\",\n  \"notes\": \"Interested in software engineering role.\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/applications",
+          "host": ["{{baseUrl}}"],
+          "path": ["applications"]
+        }
+      }
+    },
+    {
+      "name": "Admin - Get Analytics",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": {
+          "raw": "{{baseUrl}}/admin/analytics",
+          "host": ["{{baseUrl}}"],
+          "path": ["admin", "analytics"]
+        }
+      }
+    },
+    {
+      "name": "Sync - Get Data Sources Health",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": {
+          "raw": "{{baseUrl}}/sync/sources",
+          "host": ["{{baseUrl}}"],
+          "path": ["sync", "sources"]
+        }
+      }
+    }
+  ]
+}

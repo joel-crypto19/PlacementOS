@@ -1,0 +1,15 @@
+{
+  "name": "placementos",
+  "version": "1.0.0",
+  "description": "PlacementOS — Enterprise College Placement & Internship Management Platform",
+  "scripts": {
+    "seed": "cd backend && npm run seed",
+    "test": "cd backend && npm test",
+    "server": "cd backend && npm run dev",
+    "client": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build"
+  },
+  "keywords": ["placement", "college", "recruitment", "internship", "mern", "react", "express", "mongodb"],
+  "author": "PlacementOS Engineering Team",
+  "license": "MIT"
+}
